@@ -8,6 +8,9 @@ Then, I choose the K-NET tool. There, with an earthquake selected, I have two op
 * "Download All Channels Data"
 * "Download All Data" (ASCII or binary)
 
-### cleaner script
-It will be sufficiente with a C script.
+### script cleaner
+Files will be in ascii or binary format, then I must check it and store data in an acurate format.
+
+Data is saved as accelerations in the three different components; vertical (UD), and both horizontal. There is alsos wave data. Which in our case is not relevant.
+
 
