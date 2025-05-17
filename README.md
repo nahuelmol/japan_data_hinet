@@ -1,5 +1,20 @@
 ## japan_data_hinet
 
+### plan
+The idea to go through the following stages:
+
+* Data collection
+* Storage
+* Cleanup
+* Transformation
+* Analytics
+* Insights
+
+
+Data collection, Storage, Cleanup and Transformation goes from the direct treatment of data, to its shaping to be finally processed and analize. The final part is focused on understanding and giving a meaning to the raw data.
+
+The main analytic method is the Principal Component Analysis (PCA). This way it's possible to find patterns among the great amount of information.
+
 ### extracting data
 First, I am going to extract data from the NIED site database. 
 https://www.bosai.go.jp/e/research/database/earthquake.html
