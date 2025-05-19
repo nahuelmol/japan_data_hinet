@@ -7,61 +7,41 @@
 #include <map>
 
 int main() {
+    std::vector<std::string> fields;
     std::ifstream file("IBR0191104111716.UD");
     if(!file.is_open()){
-        std::cerr << "no se pudo abrir" << std::endl;
+        std::cerr << "this file cannot be opened" << std::endl;
         return 1;
     }
     std::string line;
-    std::vector<double>acels;
-    bool reading = false;
+    int linecounter = 0;
     while(std::getline(file, line)){
-        std::stringstream ss(line);
-        double val;
-        if(ss << val) {
-            reading =true;
-            acels.push_back(val);
-            while(ss >> val){
-                acels.push_back(val);
+        std::string field;
+        bool infield = true;
+        bool space = false;
+        for (auto c = line.begin(); c != line.end(); ++c) {
+            if(!(*c == ' ') & (infield == true)) {
+                field += *c;
+                infield = true;
+            } else {
+                if(space == false) {
+                    space = true;
+                } else {
+                    fields.push_back(field);
+                    field = "";
+                    infield = true;
+                    break;
+                }
             }
-        } else if(reading){
+        } 
+        linecounter += 1;
+        if(linecounter == 17){
             break;
         }
     }
+    for(auto c : fields) {
+        std::cout << "field: " << c << std::endl;
+    }
     file.close();
-
-    for (size_t i = 0; i < std::min<size_t>(10, acels.size()); ++i) {
-        std::cout << "sample " << i << ": " << acels[i] << " m/s^2" << std::endl;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    
-
-    
-    std::ifstream archivo("IBR0191104111716.kwin");
-    if(!archivo){
-        std::cerr << "i cannot open this thing" << std::endl;
-        return 1;
-    } else {
-        std::cout << "opened" << std::endl;
-    }
-    std::map<std::string, std::string> parameters;
-    std::string linea;
-    while(std::getline(archivo, linea)){
-        std::cout << "line ->" << line << std::endl;
-        size_t sep = linea.find(':');
-        if(sep != std::string::npos) {
-            std::string clave = linea.substr(0, sep);
-            std::string valor = linea.substr(sep + 1);
-            parameters[clave] = valor;
-        }
-    }
-    archivo.close();
-    for( const auto& par: parameters){
-        std::cout << par.first << ": " << par.second << std::endl;
-    }
     return 0;
 }
