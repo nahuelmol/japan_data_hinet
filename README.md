@@ -31,13 +31,13 @@ First, we select an earthquake. In our case, the well known March-11-2011 eartqu
 ![March-11](capture1.png)
 
 The browser will download a tar file which contains our data. The following is just decomprise it.
-NIED gives us, a bunch of data, placed in different files. Per station there will a file for each components; UD (up-down), the NS(north-south) and EW(east-west). It's possible to identify what we have by the name of the file.
-
-![March-11](capture3.png)
-
-In our example, you can see (capture1.png) that there is 1227 sites, 1227 stations and each one contains UD, NS and EW data among other information.
-Using an .UD file, we can see (capture2.png) how the ascii file looks like, the called K-NET ASCII file. It starts with 17 lines of metadata and from the 18 line a time-series begins which represents the wave in its UD component.
+NIED gives us, a bunch of data, placed in different files. Per station there will a file for each components; UD (up-down), the NS(north-south) and EW(east-west). It's possible to identify what we have by the name of the file.(capture2.png)
 
 ![March-11](capture2.png)
+
+In our example, you can see (capture1.png) that there is 1227 sites, 1227 stations and each one contains UD, NS and EW data among other information.
+Using an .UD file, we can see (capture3.png) how the ascii file looks like, the called K-NET ASCII file. It starts with 17 lines of metadata and from the 18 line a time-series begins which represents the wave in its UD component.
+
+![March-11](capture3.png)
 
 
