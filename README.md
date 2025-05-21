@@ -1,6 +1,6 @@
-## japan_data_hinet
+## Japan Data Hi-Net
 
-### plan
+### Plan
 The idea to go through the following stages:
 
 * Data collection
@@ -15,7 +15,7 @@ Data collection, Storage, Cleanup and Transformation goes from the direct treatm
 
 The main analytic method is the Principal Component Analysis (PCA). This way it's possible to find patterns among the great amount of information.
 
-### extracting data
+### Extracting data
 First, I am going to extract data from the NIED site database. 
 https://www.bosai.go.jp/e/research/database/earthquake.html
 
@@ -40,4 +40,25 @@ Using an .UD file, we can see (capture3.png) how the ascii file looks like, the 
 
 ![March-11](capture3.png)
 
+### Proceeding
+There will be a table that contains the studied earthquakes and its most important metadata.
 
+* Geiyo Islands -> March-24 (2001)
+* Chuetsu -> October-23 (2004)
+* Chuetsu -> July-16 (2007)
+* Iwate-Miyagi -> June-14 (2008)
+* Miyagi -> April-7 (2011)
+* Tokyo -> March-11 (2011)
+* Fukushima -> April-17 (2013)
+* Fukushima -> April-19 (2013)
+* Hokkaido -> September-6 (2018)
+* Fukushima -> Febraury-13 (2021)
+* Noto -> January-1 (2024)
+
+At the beginning, are considered; depth, magnitude, prefecture, year, etc. THis will allow an accurate control over data, paying attention to its integrity.
+
+The best is to include more and more earthquakes. This process will be done using a c++ software for examining each file allowing scalability, and possibly continuos integration in a future server-type project.
+
+From each time-series (UD at first) we can get:
+* Mean and peak values
+* Some type of pattern durgin the shaking like, decaing, attenuance, code, aparent velocity (Cx) role, surface waves presence 
