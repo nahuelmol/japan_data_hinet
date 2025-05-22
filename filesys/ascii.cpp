@@ -6,6 +6,8 @@
 
 #include <map>
 
+#include "waveextracts.cpp"
+
 int main() {
     std::vector<std::string> fields;
     std::vector<std::string> values;
@@ -53,13 +55,25 @@ int main() {
         linecounter += 1;
         if(linecounter == 17){
             //corto al header
+            linecounter = 0;
             break;
         }
+    }
+    
+    std::string wavecontent = "";
+    while(std::getline(file, line)){
+        if(linecounter > 17){
+            wavecontent += (line);
+        } 
+        linecounter++;
     }
     file.close();
     for(int i = 0; i< 16;i++) {
         std::cout << fields[i] << " -> " << values[i] << std::endl;
     }
     //guardo en in diccionary
+    //inicio el lector de la onda in waveextracts
+    wavereader(wavecontent);
+
     return 0;
 }
