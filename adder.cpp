@@ -1,16 +1,19 @@
 
+#include <vector>
+
 #include "earthquake.cpp"
 #include "station.cpp"
 
 
 void command(int argc, char* argv[]){
-    std::vector<std::string> cmds = ["add", "del", "help", "?"];
-    std::vector<std::string> secs = ["eq", "stat"];
+    std::vector<std::string> cmds = {"add", "del", "help", "?"};
+    std::vector<std::string> secs = {"eq", "stat"};
     std::string cmd;
     if(argc > 1){
         cmd = argv[1];
+        std::string sec;
         sec = argv[2];
-        if(cmd = "add"){
+        if(cmd == "add"){
             if(sec == "eq"){
                 addEarthquake();
             } else if(sec == "stat") {
