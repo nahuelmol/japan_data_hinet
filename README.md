@@ -5,9 +5,9 @@ Content
 ## Index
 
 *   [Plan](#Plan)
-*   [Extracting Data](#Subsecci%C3%B3n-1)
-*   [Script cleaner process: from raw data](#Secci%C3%B3n-2)
-*   [Proceeding](#Secci%C3%B3n-2)
+*   [Extracting Data](#Extracting-data)
+*   [Script cleaner process: from raw data](#Script-cleaner-process:-from-raw-data)
+*   [Proceeding](#Proceeding)
 
 ### Plan
 The following stages are established in order to perform a proper data analysis;
