@@ -9,9 +9,6 @@ int main(int argc, char* argv[]) {
     command(argc, argv);
     //this will take tabbed files
     std::string dir = "data.txt";
-    tab(dir);
     return 0;
 }
-
-
 
