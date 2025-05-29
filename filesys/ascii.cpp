@@ -8,13 +8,13 @@
 
 #include "waveextracts.cpp"
 
-int main() {
+std::pair<bool, std::vector<std::string>> wave_header_reader(std::string path) {
     std::vector<std::string> fields;
     std::vector<std::string> values;
-    std::ifstream file("IBR0191104111716.UD");
+    std::ifstream file(path);
     if(!file.is_open()){
         std::cerr << "this file cannot be opened" << std::endl;
-        return 1;
+        return {false, {}};
     }
     std::string line;
     int linecounter = 0;
@@ -68,12 +68,9 @@ int main() {
         linecounter++;
     }
     file.close();
-    for(int i = 0; i< 16;i++) {
-        std::cout << fields[i] << " -> " << values[i] << std::endl;
-    }
+    std::vector <std::string> data;
     //guardo en in diccionary
     //inicio el lector de la onda in waveextracts
-    wavereader(wavecontent);
-
-    return 0;
+    //wavereader(wavecontent);
+    return {true, values};
 }
