@@ -6,6 +6,8 @@
 #include "station.cpp"
 #include "command.cpp"
 
+#include "dbase/checker.cpp"
+
 void command(int argc, char* argv[]){
     std::vector<std::string> cmds = {"add", "print", "decom" , "del", "help", "?"};
     std::vector<std::string> secs = {"eq", "stat"};
@@ -28,9 +30,26 @@ void command(int argc, char* argv[]){
             } else if(sec == "stat") {
                 addStation();
             }
-        } else {
-            if(cmd == "check") {
-                //nothing 
+        } else if(cmd == "check") {
+            //nothing 
+            //check if exists
+            if(sec == "eq"){
+                if(argc > 3) { 
+                    third = argv[3];
+                    std::cout << "I should check if " << third << " exists" << std::endl;
+                } else {
+                    std::cout << "args" << std::endl;
+                }
+
+            }
+        } else if(cmd == "ask") {
+            if(sec == "eqs"){
+                std::string query = allTable("earthquakes");
+                connect(query);
+            } else if (sec == "prefs") {
+                std::string query = allTable("prefectures");
+            } else if (sec == "stats") {
+                std::string query = allTable("stations");
             }
         }
     } else if (argc == 1){
