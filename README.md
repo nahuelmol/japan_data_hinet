@@ -1,6 +1,7 @@
 ## Japan Data Hi-Net
 
 Content: most of the documentation is tentative. It's not built yet but it will be soon.
+I should mention that data source is K-NET (Kyoshin Network) in specific.
 
 ## Index
 
@@ -88,9 +89,9 @@ Other table to include is the prefecture/subprefecture-site name. Each site (or 
 The number of sites will inscrease as long as a site is added.
 
 ## CMD tool
-An specific objective is the building of a good CMD tool for managing the constant flow to our database, modifying tables, columns and records. This is possibly the most important work inside this work.
+The main goal is the building of a good CMD tool for managing the constant flow to our database, modifying tables, columns and records. 
 
-The commands listed here are just previsualizations, they are not built yet.
+The commands listed here are just previsualizations, they are not built yet. The name of the tool is SS.
 
 ### Asking
 
@@ -98,27 +99,43 @@ ASK command will give us data about an specific area/zone being a prefecture, su
 
 The following command will show us the number of sites within an specific prefecture.
 ```
-ask -p Miyagi sitesn
+SS ask -p Miyagi sitesn
 ```
 
 This one, returns data about an specific site if exists or ERR if not.
 ```
-ask -st MYG002
+SS ask -st MYG002
 ```
+
+This print out all earthquakes registered in the database
+```
+SS ask eqs
+```
+
+This add a new earthquake. The format is year-month-day-hour-minutes-seconds without dash.
+```
+SS add 20110311144600
+```
+For this is neccesary to have the .knt folder already unzipped in the "data" directory.
 
 ### Checking
 
-CHK command works like ASK, it returns data, but focused on a site. The following gives us which earthquakes were registered by MYG002 as a list.
+CHK command works like ASK, it returns data focused on a site. The following gives us which earthquakes were registered by MYG002 as a list ordered by their years. Each earthquake has a name, the complete origin time (from year to second).
 
 ```
-check MYG002
+SS check MYG002 -years
 ```
+This shows a table of two columns, the earthquake name in the first and the requested property on second column. If there's not a property specified then it just returns names. Besides years, can be specified:
+
+* magnitude
+* lat
+* lon
 
 ### Printing
 
 It is just a printer of waves. It could be selected an station and its earthquake, but also only the station and all its waves. In our example the March-11 earthquake wave registered by MYG002.
 
 ```
-print MYG002 M11-2011
+SS print MYG002 M11-2011
 ```
 
