@@ -29,6 +29,8 @@ void command(int argc, char* argv[]){
                 }
             } else if(sec == "stat") {
                 addStation();
+            } else if(sec == "statall") {
+                addAllStation();
             }
         } else if(cmd == "check") {
             //nothing 
@@ -41,6 +43,20 @@ void command(int argc, char* argv[]){
                     std::cout << "args" << std::endl;
                 }
 
+            } else {
+                //there must be an station name
+                //I must compare with a number of stations registered in database
+                if(argc > 3) { 
+                    third = argv[3];
+                    if(third == "exists") {
+                        //checkStat(sec);
+                    } else if (third == "list"){
+                        std::string query = listStat(sec);
+                        connect(query);
+                    }
+                } else {
+                    std::cout << "args" << std::endl;
+                }
             }
         } else if(cmd == "ask") {
             if(sec == "eqs"){
