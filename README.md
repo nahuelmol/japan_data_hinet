@@ -6,16 +6,17 @@ I should mention that data source is K-NET (Kyoshin Network) in specific.
 ## Index
 
 1.  [Plan](#Plan)
-2.  [Extracting Data](#Extracting-data)
-3.  [Script cleaner process: from raw data](#Script-cleaner-process:-from-raw-data)
-4.  [Proceeding](#Proceeding)
-5.  [CMD tool](#CMD-tool)
+3.  [Extracting Data](#Extracting-data)
+4.  [Script cleaner process: from raw data](#Script-cleaner-process:-from-raw-data)
+5.  [Proceeding](#Proceeding)
+6.  [CMD tool](#CMD-tool)
 
     5.1 [Asking](#Asking)
     
     5.2 [Checking](#Checking)
     
     5.3 [Printing](#Printing)
+7.  [Building](#Building)       
 
 ### Plan
 The following stages are established in order to perform a proper data analysis;
@@ -137,5 +138,11 @@ It is just a printer of waves. It could be selected an station and its earthquak
 
 ```
 SS print MYG002 M11-2011
+```
+### Building
+
+This is the simple command to compile the code using Makefile
+```
+mingw32-make com
 ```
 
