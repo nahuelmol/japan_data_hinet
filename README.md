@@ -19,7 +19,7 @@ I should mention that data source is K-NET (Kyoshin Network) in specific.
 
      5.3.1 [Waves](#Waves)
     
-     5.3.2 [Bitmap](#Bitmap)
+     5.3.2 [Maps](#Maps)
     
         
 8.  [Building](#Building)       
