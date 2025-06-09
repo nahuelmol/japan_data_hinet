@@ -15,8 +15,14 @@ I should mention that data source is K-NET (Kyoshin Network) in specific.
     
     5.2 [Checking](#Checking)
     
-    5.3 [Printing](#Printing)
-7.  [Building](#Building)       
+    5.3 [Display](#Display)
+
+     5.3.1 [Waves](#Waves)
+    
+     5.3.2 [Bitmap](#Bitmap)
+    
+        
+8.  [Building](#Building)       
 
 ### Plan
 The following stages are established in order to perform a proper data analysis;
@@ -132,13 +138,25 @@ This shows a table of two columns, the earthquake name in the first and the requ
 * lat
 * lon
 
-### Printing
+### Display
 
+### Maps
+
+Using bitmap images it is possible to create an image of Japan and over it paint circles at each site's position and colour it with tone following a value. For example, the max acceleration can be taken. 
+
+First a range of values is established, from minimum to maximum. Later, following the RGB spectra, a given value of acceleartion is translated to a color. Then a map is of values is printed out. The next step could be to paint a map of Japan below the point cloud.
+
+The idea is to replicate what the NIED sied does.
+
+Values used for the mentioned map are scalars extracted from the header of the site ASCII file. However, what matters is getting new values from the wave. Then is needed to add that functionality.
+
+### Waves
 It is just a printer of waves. It could be selected an station and its earthquake, but also only the station and all its waves. In our example the March-11 earthquake wave registered by MYG002.
 
 ```
 SS print MYG002 M11-2011
 ```
+
 ### Building
 
 This is the simple command to compile the code using Makefile
