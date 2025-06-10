@@ -21,8 +21,8 @@ I should mention that data source is K-NET (Kyoshin Network) in specific.
     
      5.3.2 [Maps](#Maps)
     
-        
-8.  [Building](#Building)       
+8.  [Seeding](#Seeding) 
+9.  [Building](#Building)       
 
 ### Plan
 The following stages are established in order to perform a proper data analysis;
@@ -157,9 +157,14 @@ It is just a printer of waves. It could be selected an station and its earthquak
 SS print MYG002 M11-2011
 ```
 
+### Seeding
+
+Directly, all data living in our data directory can be saved into the database.
+
 ### Building
 
-This is the simple command to compile the code using Makefile
+This simple command will compile the code using Makefile
+
 ```
 mingw32-make com
 ```
