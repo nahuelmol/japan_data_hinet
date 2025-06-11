@@ -55,31 +55,27 @@ void addStation(){
 
 //SEEDING
 
-std::vector<std::string> stationHeader(std::string station_path){
-    //I must extract data from station file
-    auto result = wave_header_reader(station_path);
-    if(result.first){
-        std::vector<std::string> data(result.second.begin() + 5, result.second.end());
-        std::string query = insert_station(data);
-        connect(query);
-    } else {
-        std::cout << "ERR" << std::endl;
-    };
-}
-
-void enterDir(std::vector<std::string> folders){
-    for(auto folder : folders){
-        std::string pathfolder = "./data/" + folder;
-        const char* stat_path = pathfolder.c_str();
-        DIR* dir = opendir(stat_path);
+void enterDir(std::vector<std::string> earthquakes){
+    for(std::string eq : earthquakes){
+        //one eq at a time
+        std::string eqpath = "./data/" + eq;
+        DIR* dir = opendir(eqpath.c_str());
         if (dir == nullptr) {
-            std::cerr << "earthquake doesn't exists" << std::endl;
+            std::cerr << "ERR:cannot open earthquake" << std::endl;
         }
         dirent* entry;
         while ((entry = readdir(dir)) != nullptr) {
             if(is_format(entry->d_name, "UD")){
-                std::string complete_path = pathfolder + "/" + (entry->d_name);
-                std::vector<std::string> data = stationHeader(complete_path);
+                std::string station_path = eqpath + "/" + (entry->d_name);
+                //std::vector<std::string> data = takeStationData(station_path);
+                auto result = wave_header_reader(station_path);
+                if(result.first){
+                    std::vector<std::string> data(result.second.begin() + 5, result.second.end());
+                    std::string query = insert_station(data);
+                    connect(query);
+                } else {
+                    std::cout << "ERR: station data cannot be extracted" << std::endl;
+                };
             }
         }
     }
@@ -92,12 +88,12 @@ void seedStations(){
         std::cerr << "earthquake doesn't exists" << std::endl;
     }
     dirent* entry;
-    std::vector<std::string> folders;
+    std::vector<std::string> earthquakes;
     while ((entry = readdir(dir)) != nullptr) {
         if(is_format(entry->d_name, "knt")){
-            folders.push_back(entry->d_name);
+            earthquakes.push_back(entry->d_name);
         }
     }
-    enterDir(folders);
+    enterDir(earthquakes);
 }
 

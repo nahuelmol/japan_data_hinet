@@ -7,6 +7,8 @@
 #include "command.cpp"
 
 #include "dbase/checker.cpp"
+#include "displays/map.cpp"
+#include "output/export.cpp"
 
 void command(int argc, char* argv[]){
     std::vector<std::string> cmds = {"add", "print", "decom" , "del", "help", "?"};
@@ -65,8 +67,12 @@ void command(int argc, char* argv[]){
             } else if (sec == "stats") {
                 std::string query = allTable("stations");
             }
-        } else if(cmd == "seed"){
+        } else if(cmd == "db:seed"){
             seedStations();
+        } else if(cmd == "map:build"){
+            makeMap();
+        } else if(cmd == "csv:build"){
+            makeCSV();
         } else {
             std::cout << "unrecognized command" << std::endl;
         }
