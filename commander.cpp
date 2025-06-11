@@ -14,11 +14,12 @@ void command(int argc, char* argv[]){
     std::string cmd;
     if(argc > 1){
         cmd = argv[1];
-        //if_target(argv);
-        Command command(argv[1], argv[2]);
         std::string sec;
         std::string third;
-        sec = argv[2];
+        if (!(argc == 2)) {
+            sec = argv[2];
+            Command command(argv[1], argv[2]);
+        }
         if(cmd == "add"){
             if(sec == "eq"){
                 if(argc > 3) { 
@@ -29,8 +30,6 @@ void command(int argc, char* argv[]){
                 }
             } else if(sec == "stat") {
                 addStation();
-            } else if(sec == "statall") {
-                addAllStation();
             }
         } else if(cmd == "check") {
             //nothing 
@@ -42,7 +41,6 @@ void command(int argc, char* argv[]){
                 } else {
                     std::cout << "args" << std::endl;
                 }
-
             } else {
                 //there must be an station name
                 //I must compare with a number of stations registered in database
@@ -67,14 +65,20 @@ void command(int argc, char* argv[]){
             } else if (sec == "stats") {
                 std::string query = allTable("stations");
             }
+        } else if(cmd == "seed"){
+            seedStations();
+        } else {
+            std::cout << "unrecognized command" << std::endl;
         }
     } else if (argc == 1){
-        cmd = argv[1];
-        Command command(argv[1], "NULL");
+        cmd = argv[0];
+        //Command command(argv[1], "NULL");
         if(cmd == "add") {
             std::cout << "what do you want to add?" << std::endl;
         } else if ((cmd == "help") & (cmd == "?")) {
             std::cout << "this are the available commands" << std::endl;
+        } else {
+            std::cout << "command not found" << std::endl;
         }
     } else {
         std::cout << "there is no arguments" << std::endl;

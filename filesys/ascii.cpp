@@ -69,8 +69,5 @@ std::pair<bool, std::vector<std::string>> wave_header_reader(std::string path) {
     }
     file.close();
     std::vector <std::string> data;
-    //guardo en in diccionary
-    //inicio el lector de la onda in waveextracts
-    //wavereader(wavecontent);
     return {true, values};
 }
