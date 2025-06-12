@@ -7,8 +7,11 @@
 #include "command.cpp"
 
 #include "dbase/checker.cpp"
+#include "dbase/tables.cpp"
 #include "displays/map.cpp"
 #include "output/export.cpp"
+
+
 
 void command(int argc, char* argv[]){
     std::vector<std::string> cmds = {"add", "print", "decom" , "del", "help", "?"};
@@ -67,6 +70,9 @@ void command(int argc, char* argv[]){
             } else if (sec == "stats") {
                 std::string query = allTable("stations");
             }
+        } else if(cmd == "db:build"){
+            //create tables; earthquakes and stations
+            buildTables();
         } else if(cmd == "db:seed"){
             seedStations();
         } else if(cmd == "map:build"){

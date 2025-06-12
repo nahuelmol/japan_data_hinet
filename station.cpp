@@ -43,17 +43,57 @@ void lookForStations(std::string earthQuake){
     //this are stations available but not in database
     listStations(path, code);
 }
+
+std::vector<std::string> takeStationData(std::string code) {
+    std::string lat;
+    std::string lon;
+    std::string height;
+    std::string scale;
+    std::cout << "lat: ";
+    std::cin >> lat;
+    std::cout << "lon: ";
+    std::cin >> lon;
+    std::cout << "height: ";
+    std::cin >> height;
+    std::cout << "scale factor: ";
+    std::cin >> scale;
+    std::vector<std::string> data = {code,lat,lon,height,scale};
+    return data;
+}
+
 void addStation(){
     std::cout << "Tell me the earthquake" << std::endl;
     std::string earthQuake;
     std::cin >> earthQuake;
-    lookForStations(earthQuake); //this will show stations
-    std::cout << "Now, tell me the station name" << std::endl;
-    std::string station;
-    std::cin >> station;
+    lookForStations(earthQuake); //this will show stations in filesystem
+    std::cout << "Which station do you want to add, tell me the station code: " << std::endl;
+    std::string codename;
+    std::cin >> codename;
+    //the following checks if station already exists in database
+    std::string query = select(codename, "stations");
+    connect(query);
+    //if not
+    std::vector<std::string> data = takeStationData(codename);
+    query = insert_station(data);
+    connect(query);
 }
 
 //SEEDING
+std::vector<std::string> filter(std::vector<std::string> rawdata, std::string targetable) {
+    int i = 0;
+    std::vector<std::string> newdata;
+    if(targetable == "station") {
+        int places[] = {5,6,7,8,13};
+        for(int place : places){
+            newdata.push_back(rawdata[place]);
+        }
+        return newdata;
+    } else if (targetable == "earthquakes") {
+        //things
+    } else {
+        std::cout << "unrecognized target" << std::endl;
+    }
+}
 
 void enterDir(std::vector<std::string> earthquakes){
     for(std::string eq : earthquakes){
@@ -67,11 +107,10 @@ void enterDir(std::vector<std::string> earthquakes){
         while ((entry = readdir(dir)) != nullptr) {
             if(is_format(entry->d_name, "UD")){
                 std::string station_path = eqpath + "/" + (entry->d_name);
-                //std::vector<std::string> data = takeStationData(station_path);
                 auto result = wave_header_reader(station_path);
                 if(result.first){
-                    std::vector<std::string> data(result.second.begin() + 5, result.second.end());
-                    std::string query = insert_station(data);
+                    std::vector<std::string> clean_data = filter(result.second, "station");
+                    std::string query = insert_station(clean_data);
                     connect(query);
                 } else {
                     std::cout << "ERR: station data cannot be extracted" << std::endl;
