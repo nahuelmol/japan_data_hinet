@@ -156,10 +156,24 @@ It is just a printer of waves. It could be selected an station and its earthquak
 ```
 SS print MYG002 M11-2011
 ```
+### Building
+
+Before the data analysis project is underway, instructure must be ready. This means, tables should exists.
+
+```
+SS db:build
+```
 
 ### Seeding
 
-Directly, all data living in our data directory can be saved into the database.
+All data living in our data directory can be saved into the database. It is important to keep in mind how data is organized as tables. An initial aproach follows that:
+* Each earthquake will have its own sites table (having just station activity specifically for that earthquake).
+* There will be a global station table, just as a register. This can be discarded. However, each station can have its own group of earthquakes that were detected by that station. Then it's mandatory to have them as a unique record asociated to different earthquakes on different times.
+
+The command for this process is:
+```
+SS db:seed
+```
 
 ### Building
 
