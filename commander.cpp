@@ -7,7 +7,7 @@
 #include "command.cpp"
 
 #include "dbase/checker.cpp"
-#include "dbase/tables.cpp"
+#include "dbase/builder.cpp"
 #include "displays/map.cpp"
 #include "output/export.cpp"
 
@@ -55,7 +55,7 @@ void command(int argc, char* argv[]){
                         //checkStat(sec);
                     } else if (third == "list"){
                         std::string query = listStat(sec);
-                        connect(query);
+                        connect(query, NULL);
                     }
                 } else {
                     std::cout << "args" << std::endl;
@@ -64,15 +64,16 @@ void command(int argc, char* argv[]){
         } else if(cmd == "ask") {
             if(sec == "eqs"){
                 std::string query = allTable("earthquakes");
-                connect(query);
+                connect(query, NULL);
             } else if (sec == "prefs") {
                 std::string query = allTable("prefectures");
             } else if (sec == "stats") {
                 std::string query = allTable("stations");
             }
         } else if(cmd == "db:build"){
-            //create tables; earthquakes and stations
             buildTables();
+        } else if(cmd == "db:build:eqs"){
+            buildEqsTables();
         } else if(cmd == "db:seed"){
             seedStations();
         } else if(cmd == "map:build"){

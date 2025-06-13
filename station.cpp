@@ -71,11 +71,11 @@ void addStation(){
     std::cin >> codename;
     //the following checks if station already exists in database
     std::string query = select(codename, "stations");
-    connect(query);
+    connect(query, NULL);
     //if not
     std::vector<std::string> data = takeStationData(codename);
     query = insert_station(data);
-    connect(query);
+    connect(query, NULL);
 }
 
 //SEEDING
@@ -111,7 +111,7 @@ void enterDir(std::vector<std::string> earthquakes){
                 if(result.first){
                     std::vector<std::string> clean_data = filter(result.second, "station");
                     std::string query = insert_station(clean_data);
-                    connect(query);
+                    connect(query, NULL);
                 } else {
                     std::cout << "ERR: station data cannot be extracted" << std::endl;
                 };

@@ -12,7 +12,7 @@ int call(void* NotUsed, int argc, char** argv, char** colname) {
     return 0;
 }
 
-void connect(std::string sql) {
+void connect(std::string sql, int (*callback)(void*, int, char**, char**)) {
     sqlite3* db;
     char* errMsg = 0;
     int rc = sqlite3_open("dbase.db", &db);
@@ -20,7 +20,7 @@ void connect(std::string sql) {
         std::cerr << "DB CONNECTION ERR: " << sqlite3_errmsg(db) << std::endl;
     }
 
-    rc = sqlite3_exec(db, sql.c_str(), call, nullptr, &errMsg);
+    rc = sqlite3_exec(db, sql.c_str(), callback, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
         std::cerr << "SENTENCE ERR: " << errMsg << std::endl;
         sqlite3_free(errMsg);

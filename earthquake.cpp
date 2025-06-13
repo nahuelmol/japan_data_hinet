@@ -36,7 +36,7 @@ void addEarthquake(std::string eq) {
         std::vector<std::string> data(result.second.begin(), result.second.begin() + 5);
         //enter to the database
         std::string query = insert_earthquake(data);
-        connect(query);
+        connect(query, NULL);
     } else {
         std::cout << "ERR" << std::endl;
     };
