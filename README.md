@@ -158,11 +158,21 @@ SS print MYG002 M11-2011
 ```
 ### Building
 
-Before the data analysis project is underway, instructure must be ready. This means, tables should exists.
+Before the data analysis project is underway, instructure must be ready. This means, tables should exists previous to its usage. On tables.cpp are specified global tables like earthquakes and stations, and their fields can be modified there. Once they're ready, the following command starts the building process on database. 
 
 ```
 SS db:build
 ```
+
+In the same script, any other table considered global can be included.
+
+The mentioned global earthquake table could be used to build stations tables for each earthquake. Then, it's mandatory to have earthquakes table built and seeded. Being those requirements satisfied, type the following command:
+
+```
+SS db:build:eqs
+```
+
+Each table produced by this command contains information about an specific earthquake, and its effect on each station. From this, it is easier to build Japan's max acceleration distribution map for each events.
 
 ### Seeding
 
