@@ -1,5 +1,12 @@
 ## Japan Data Hi-Net
 
+<div>
+  <img src="https://img.shields.io/github/last-commit/nahuelmol/japan_data_hinet"/>
+  <img src="https://img.shields.io/github/languages/code-size/nahuelmol/japan_data_hinet"/>
+  <img src="https://img.shields.io/github/languages/top/nahuelmol/japan_data_hinet"/>
+    <img src="https://img.shields.io/github/languages/count/nahuelmol/japan_data_hinet"/>
+</div>
+
 Content: most of the documentation is tentative. It's not built yet but it will be soon.
 I should mention that data source is K-NET (Kyoshin Network) in specific.
 
