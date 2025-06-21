@@ -192,6 +192,15 @@ The command for this process is:
 SS db:seed
 ```
 
+### Db:tasks
+
+Tasks are basic directives that gives specific information about the database. The following displays all earthquakes related to a specific station.
+
+```
+SS db:stats -story <statname>
+```
+
+
 ### Building
 
 This simple command will compile the code using Makefile
