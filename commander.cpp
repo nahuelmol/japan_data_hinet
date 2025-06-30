@@ -1,4 +1,3 @@
-
 #include <vector>
 
 #include "filesys/filework.cpp"
@@ -11,7 +10,7 @@
 #include "displays/map.cpp"
 #include "output/export.cpp"
 
-
+#include "dbase/asks.cpp"
 
 void command(int argc, char* argv[]){
     std::vector<std::string> cmds = {"add", "print", "decom" , "del", "help", "?"};
@@ -64,11 +63,13 @@ void command(int argc, char* argv[]){
         } else if(cmd == "ask") {
             if(sec == "eqs"){
                 std::string query = allTable("earthquakes");
-                connect(query, NULL);
+                connect(query, allTableCall);
             } else if (sec == "prefs") {
                 std::string query = allTable("prefectures");
+                connect(query, allTableCall);
             } else if (sec == "stats") {
                 std::string query = allTable("stations");
+                connect(query, allTableCall);
             }
         } else if(cmd == "db:build"){
             buildTables();

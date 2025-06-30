@@ -40,3 +40,13 @@ std::string select(std::string codename, std::string target) {
     std::cout << query << std::endl;
     return query;
 }
+
+std::string create_idx(std::string idx,std::string table, std:string field) {
+    std::string query = "CREATE INDEX "+idx+" ON "+table+" ("+field+");";
+    return query;
+}
+
+std::string drop_idx(std::string idx) {
+    std::string query = "DROP INDEX "+idx+";" 
+    return query;
+}

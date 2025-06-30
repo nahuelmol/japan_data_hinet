@@ -23,6 +23,13 @@ std::string takeFirstStation(std::string epath) {
     return firstStation;
 }
 
+int addCall(void* NotUsed, int argc, char** argv, char** colname) {
+    for(int i = 0; i < argc; i++){
+        std::cout << (argv[i] ? argv[i] : "NULL") << " | ";
+    }
+    std::cout << std::endl;
+}
+
 void addEarthquake(std::string eq) {
     std::string eq_name = eq + ".knt";
     std::cout << "adding " << eq_name << std::endl;
@@ -36,7 +43,7 @@ void addEarthquake(std::string eq) {
         std::vector<std::string> data(result.second.begin(), result.second.begin() + 5);
         //enter to the database
         std::string query = insert_earthquake(data);
-        connect(query, NULL);
+        connect(query, addCall);
     } else {
         std::cout << "ERR" << std::endl;
     };
