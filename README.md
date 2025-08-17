@@ -134,7 +134,7 @@ For this is neccesary to have the .knt folder already unzipped in the "data" dir
 
 ### Checking
 
-CHK command works like ASK, it returns data focused on a site. The following gives us which earthquakes were registered by MYG002 as a list ordered by their years. Each earthquake has a name, the complete origin time (from year to second).
+CHK command works like ASK, it returns data focused on a site. The following gives us which earthquakes were registered by MYG002 as a list ordered by their years. Each earthquake has a unique name, being the complete origin time (from year to second).
 
 ```
 SS check MYG002 -years
@@ -158,14 +158,17 @@ The idea is to replicate what the NIED sied does.
 Values used for the mentioned map are scalars extracted from the header of the site ASCII file. However, what matters is getting new values from the wave. Then is needed to add that functionality.
 
 ### Waves
-It is just a printer of waves. It could be selected an station and its earthquake, but also only the station and all its waves. In our example the March-11 earthquake wave registered by MYG002.
+It is just a wave plotter. A station and a particular earthquake should be specified. The following command uses the March 11 earthquake wave recorded by MYG002 is used.
 
 ```
 SS print MYG002 M11-2011
 ```
+
+GNUplot may possibly be used to generate the time series plots. It is a command line base tool that takes pre shaped data as an input and produces a plot.
+
 ### Building
 
-Before the data analysis project is underway, instructure must be ready. This means, tables should exists previous to its usage. On tables.cpp are specified global tables like earthquakes and stations, and their fields can be modified there. Once they're ready, the following command starts the building process on database. 
+Before the data analysis project begins, structure must be ready. This means, tables should exists previous to its usage. On tables.cpp are specified global tables like earthquakes and stations, and their fields can be modified there. Once they're ready, the following command starts the building process on database. 
 
 ```
 SS db:build
