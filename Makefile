@@ -8,5 +8,8 @@ objs:
 com:
 	$(CXX) index.cpp libs/sqlite3.o -o out.exe
 
+RR:
+	$(CXX) -o outRR Rstarter.cpp `R CMD config --cppflags --ldflags` -lR lRInside
+
 exe:
 	out.exe
