@@ -1,4 +1,5 @@
 #include "tables.cpp"
+#include "queries.h"
 
 int callback (void* NotUsed, int argc, char** argv, char** colname) {
     for(int i = 0; i < argc; i++){

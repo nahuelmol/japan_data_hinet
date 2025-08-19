@@ -1,3 +1,4 @@
+#include <iostream>
 
 int allTableCall(void* NotUsed, int argc, char** argv, char** colname){
     for(int i = 0; i < argc; i++){

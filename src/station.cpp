@@ -2,7 +2,8 @@
 #include <dirent.h>
 #include <iostream>
 #include <string>
-
+#include "connect.h"
+#include <vector>
 
 void listStations(std::string path, std::string code) {
     const char* final_path = path.c_str();

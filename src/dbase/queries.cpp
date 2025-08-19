@@ -1,3 +1,5 @@
+#include <iostream>
+#include <vector>
 
 std::string insert_station(std::vector<std::string> data) {
     std::string input;
@@ -41,12 +43,12 @@ std::string select(std::string codename, std::string target) {
     return query;
 }
 
-std::string create_idx(std::string idx,std::string table, std:string field) {
+std::string create_idx(std::string idx,std::string table, std::string field) {
     std::string query = "CREATE INDEX "+idx+" ON "+table+" ("+field+");";
     return query;
 }
 
 std::string drop_idx(std::string idx) {
-    std::string query = "DROP INDEX "+idx+";" 
+    std::string query = "DROP INDEX "+idx+";";
     return query;
 }

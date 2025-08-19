@@ -1,10 +1,12 @@
-
 #include <dirent.h>
 #include <iostream>
+
 #include "filesys/ascii.cpp"
 
 #include "dbase/conn.cpp"
 #include "dbase/queries.cpp"
+#include "util.h"
+#include "command.h"
 
 std::string takeFirstStation(std::string epath) {
     const char* final_path = epath.c_str();
@@ -30,9 +32,10 @@ int addCall(void* NotUsed, int argc, char** argv, char** colname) {
     std::cout << std::endl;
 }
 
-void addEarthquake(std::string eq) {
+void addEarthquake(Command* cmd) {
+    std::string eq = cmd->filename;
     std::string eq_name = eq + ".knt";
-    std::cout << "adding " << eq_name << std::endl;
+    std::cout << "----adding " << eq_name << std::endl;
     std::string epath = "./data/" + eq_name;
     //read the first station header in the earthquake folder
     std::string filename;

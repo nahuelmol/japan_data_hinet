@@ -1,4 +1,5 @@
 #include<fstream>
+#include<iostream>
 
 void tab(std::string dir) {
     std::ifstream input;

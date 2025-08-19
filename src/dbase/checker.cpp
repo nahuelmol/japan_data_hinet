@@ -1,3 +1,4 @@
+#include <iostream>
 
 std::string allTable(std::string tablename){
     std::string ecolumns = "ORIGIN TIME | LAT | LON | DEPTH | MAGNITUDE |";
