@@ -1,7 +1,9 @@
-#include<vector>
-#include<unordered_map>
-#include<algorithm>
-#include<typeinfo>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <typeinfo>
+#include <iostream>
+#include <string>
 
 #include "command.h"
 

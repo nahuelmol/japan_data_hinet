@@ -10,6 +10,7 @@ std::string insert_station(std::vector<std::string> data) {
     std::string query = std::string("INSERT INTO STATIONS VALUES (") + input;
     return query;
 }
+
 std::string insert_earthquake(std::vector<std::string> data) {
     std::string query = std::string("INSERT INTO EARTHQUAKES VALUES (") +
         "'" + data[0] + "', " +

@@ -1,9 +1,12 @@
-
 #include <dirent.h>
 #include <iostream>
 #include <string>
-#include "connect.h"
 #include <vector>
+
+#include "util.h"
+#include "conn.h"
+#include "ascii.h"
+#include "queries.h"
 
 void listStations(std::string path, std::string code) {
     const char* final_path = path.c_str();
@@ -91,8 +94,12 @@ std::vector<std::string> filter(std::vector<std::string> rawdata, std::string ta
         return newdata;
     } else if (targetable == "earthquakes") {
         //things
+        std::vector<std::string> empty;
+        return empty;
     } else {
         std::cout << "unrecognized target" << std::endl;
+        std::vector<std::string> err;
+        return err;
     }
 }
 

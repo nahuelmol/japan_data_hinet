@@ -1,25 +1,26 @@
-#include "tables.cpp"
+
+#include <iostream>
+
+#include "tables.h"
 #include "queries.h"
+#include "conn.h"
 
 int callback (void* NotUsed, int argc, char** argv, char** colname) {
     for(int i = 0; i < argc; i++){
         std::cout << (argv[i] ? argv[i] : "NULL") << " | ";
     }
-    std::cout << std::endl;
     std::string eqname = "eq" + std::string(argv[0]);
-    Table Earthquake(eqname);
+    /*Table Earthquake(eqname);
     Earthquake.add("StationLat", "TEXT");
     Earthquake.add("StationLon", "TEXT");
     Earthquake.add("MaxAcc", "TEXT");
     std::cout << Earthquake.query << std::endl;
-    Earthquake.create();
+    Earthquake.create();*/
     //database is locked
     return 0;
 }
 
 void buildEqsTables() {
-    //take erthquakes names
-    std::cout << "hello" << std::endl;
     std::string query = select_all("earthquakes");
     connect(query, callback); //connects
 }

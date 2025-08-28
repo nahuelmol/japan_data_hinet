@@ -1,8 +1,6 @@
-
 #ifndef UTIL_H
 #define UTIL_H
 
-bool is_format(const std::string& input);
+bool is_format(const std::string& input, std::string is);
 
 #endif
-

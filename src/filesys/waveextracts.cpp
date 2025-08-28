@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 void wavereader(std::string content){
     //this function will work with the wave

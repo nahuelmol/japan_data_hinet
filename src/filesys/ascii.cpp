@@ -3,10 +3,9 @@
 #include <sstream>
 #include <vector>
 #include <string>
-
 #include <map>
 
-#include "waveextracts.cpp"
+#include "waveextracts.h"
 
 std::pair<bool, std::vector<std::string>> wave_header_reader(std::string path) {
     std::vector<std::string> fields;

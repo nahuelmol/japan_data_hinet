@@ -1,6 +1,6 @@
-
 #include <algorithm>
 #include <dirent.h>
+#include <iostream>
 
 bool is_format(std::string name, std::string is){
     std::string format = "";

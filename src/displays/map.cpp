@@ -1,3 +1,6 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
 
 struct RGB {
     unsigned char r,g,b;

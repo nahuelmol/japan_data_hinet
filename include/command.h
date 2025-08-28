@@ -1,6 +1,9 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include <vector>
+#include <unordered_map>
+
 class Command {
 public:
     std::string root;
@@ -21,7 +24,7 @@ public:
     Command(int argc, char* argv[]);
     void set_options();
     void see_cmd();
-}
+};
 
 #endif
 
