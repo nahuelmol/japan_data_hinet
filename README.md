@@ -209,6 +209,6 @@ SS db:stats -story <statname>
 This simple command will compile the code using Makefile
 
 ```
-mingw32-make com
+mingw32-make
 ```
 
