@@ -20,6 +20,7 @@ public:
     std::string filename;
 
     bool forced = false;
+    bool available = false;
 
     Command(int argc, char* argv[]);
     void set_options();

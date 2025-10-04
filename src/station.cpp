@@ -65,6 +65,35 @@ std::vector<std::string> takeStationData(std::string code) {
     return data;
 }
 
+void addby_code(std::string eq, std::string codename) {
+    const char* target = "./data/";
+    std::string path = std::string(target) + eq + ".knt";
+    const char* final_path = path.c_str();
+    DIR* dir = opendir(final_path);
+    if (dir == nullptr) {
+        std::cerr << "folder can't be open" << std::endl;
+    }
+    dirent* entry;
+    while ((entry = readdir(dir)) != nullptr) {
+        if(is_format(entry->d_name, "UD")){
+            std::string starts = entry->d_name;
+            if(starts.substr(0,6) == codename){
+                std::string file = entry->d_name;
+                std::string filepath = path + "/" + file;
+                auto result = wave_header_reader(filepath);
+                if(result.first){
+                    std::vector<std::string> data(result.second.begin() + 5, result.second.begin() + 16);
+                    std::string query = insert_station(data);
+                    std::cout << query << std::endl;
+                    connect(query, NULL);
+                } else {
+                    std::cout << "ERR" << std::endl;
+                };
+            }
+        }
+    }
+}
+
 void addStation(){
     std::cout << "Tell me the earthquake" << std::endl;
     std::string earthQuake;
@@ -77,9 +106,14 @@ void addStation(){
     std::string query = select(codename, "stations");
     connect(query, NULL);
     //if not
-    std::vector<std::string> data = takeStationData(codename);
-    query = insert_station(data);
-    connect(query, NULL);
+    //read file and extract data
+
+    std::cout << "not exists, adding" << std::endl;
+    addby_code(earthQuake, codename);
+
+    //std::vector<std::string> data = takeStationData(codename);
+    //query = insert_station(data);
+    //connect(query, NULL);
 }
 
 //SEEDING

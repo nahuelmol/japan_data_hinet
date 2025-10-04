@@ -1,10 +1,9 @@
 #include <dirent.h>
 #include <iostream>
 
-#include "filesys/ascii.cpp"
-
-#include "dbase/conn.cpp"
-#include "dbase/queries.cpp"
+#include "ascii.h"
+#include "conn.h"
+#include "queries.h"
 #include "util.h"
 #include "command.h"
 

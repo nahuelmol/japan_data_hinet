@@ -2,12 +2,13 @@
 #include <vector>
 
 std::string insert_station(std::vector<std::string> data) {
-    std::string input;
-    for(std::string dat : data) {
-        input = input + "'" + dat + "',";
-    }
-    input = (input.substr(0, input.size() - 1)) + ");";
-    std::string query = std::string("INSERT INTO STATIONS VALUES (") + input;
+    std::string query = std::string("INSERT INTO STATIONS VALUES (") +
+        "'" + data[0] + "', " +
+        "'" + data[1] + "', " +
+        "'" + data[2] + "', " +
+        "'" + data[3] + "', " +
+        "'" + data[9] + "'" + 
+        ");";
     return query;
 }
 

@@ -4,4 +4,4 @@
 std::string allTable(std::string tablename);
 std::string listStat(std::string stat);
 
-#endif
+#endif //CHECKER_H

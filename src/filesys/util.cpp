@@ -2,7 +2,7 @@
 #include <dirent.h>
 #include <iostream>
 
-bool is_format(std::string name, std::string is){
+bool is_format(const std::string& name, std::string is){
     std::string format = "";
     for (auto c = name.rbegin(); c != name.rend(); ++c) {
         if((*c) == '.') {

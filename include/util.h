@@ -3,4 +3,5 @@
 
 bool is_format(const std::string& input, std::string is);
 
-#endif
+#endif //UTIL_H
+

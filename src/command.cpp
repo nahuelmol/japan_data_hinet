@@ -10,15 +10,22 @@
 Command::Command(int argc, char* argv[]) {
     this->many_args = argc;
     this->args = argv;
+    if (argc == 1) {
+        std::cout << "alone command introduced" << std::endl;
+        return;
+    } else {
+        this->available = true;
+    }
     this->root = argv[1];
-
     if(this->root == "add"){
         if(argc > 1){
             if(argc > 2) {
                 this->target = this->args[2];
-                this->filename = this->args[3];
-                this->options = argv + 4;
-                this->set_options();
+                if (argc > 3) {
+                    this->filename = this->args[3];
+                    this->options = argv + 4;
+                    this->set_options();
+                }
             }
         }
     } else if (this->root == "ask"){
@@ -29,6 +36,18 @@ Command::Command(int argc, char* argv[]) {
         std::cout << "del" << std::endl;
     } else if (this->root == "migrate"){
         std::cout << "migrating" << std::endl;
+    } else if (this->root == "db"){
+        std::cout << "dbiding" << std::endl;
+        if(argc > 1){
+            if(argc > 2) {
+                this->target = this->args[2];
+                if (argc > 3) {
+                    this->filename = this->args[3];
+                    this->options = argv + 4;
+                    this->set_options();
+                }
+            }
+        }
     } else {
         std::cout << "not working" << std::endl;
     }

@@ -5,23 +5,20 @@
 #include "command.h"
 #include "earthquake.h"
 #include "station.h"
-
 #include "checker.h"
 #include "builder.h"
 #include "asks.h"
-
 #include "map.h"
 #include "export.h"
 #include "util.h"
-
 #include "conn.h"
 
 void switcher(Command* cmd) {
     if (cmd->root == "add") {
         if (cmd->target == "eq") {
             addEarthquake(cmd);
-        } else if(cmd->target == "stat") {
-            //addStation(cmd);
+        } else if(cmd->target == "st") {
+            addStation();
         } else {
             std::cout << "not recognized target" << std::endl;
         }
@@ -50,6 +47,7 @@ void switcher(Command* cmd) {
         }
     } else if (cmd->root == "db") {
         if(cmd->target == "build"){
+            std::cout << "building tables" << std::endl;
             buildTables();
         } else if(cmd->target == "seed"){
             std::cout << "seeding" << std::endl;
@@ -74,7 +72,11 @@ void switcher(Command* cmd) {
 
 int main(int argc, char* argv[]) {
     Command* cmd = new Command(argc, argv);
-    switcher(cmd);
+    if(cmd->available) {
+        switcher(cmd);
+    } else {
+        std::cout << "aborting execution" << std::endl;
+    }
     return 0;
 }
 

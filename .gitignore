@@ -1,1 +1,11 @@
 include/sqlite3.h
+
+data
+src/*.o
+src/dbase/*.o
+src/displays/*.o
+src/filesys/*.o
+src/output/*.o
+libs
+*.exe
+*.db

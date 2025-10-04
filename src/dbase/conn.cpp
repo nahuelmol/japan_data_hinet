@@ -1,4 +1,3 @@
-//here should be a connection to a database (sql)
 #include <iostream>
 extern "C" {
 #include "sqlite3.h"

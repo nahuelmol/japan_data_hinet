@@ -1,6 +1,8 @@
 #ifndef QUERIES_H
 #define QUERIES_H
 
+#include <vector>
+
 std::string insert_station(std::vector<std::string> data);
 std::string insert_earthquake(std::vector<std::string> data);
 std::string select_all(std::string tablename);
