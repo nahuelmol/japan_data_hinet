@@ -77,23 +77,23 @@ There will be a table that contains the studied earthquakes and its most importa
 * Chuetsu -> October-23 (2004)
 * Chuetsu -> July-16 (2007)
 * Iwate-Miyagi -> June-14 (2008)
-* Miyagi -> April-7 (2011)
 * Tokyo -> March-11 (2011)
+* Miyagi -> April-7 (2011)
 * Fukushima -> April-17 (2013)
 * Fukushima -> April-19 (2013)
 * Hokkaido -> September-6 (2018)
 * Fukushima -> Febraury-13 (2021)
 * Noto -> January-1 (2024)
 
-At the beginning, are considered; depth, magnitude, prefecture, year, etc. This will allow an accurate control over data, paying attention to its integrity.
+Initially depth, magnitude, main prefecture, year, among other event's properties are taken into account.
 
-The best is to include more and more earthquakes. This process will be done using a c++ software for examining each file through a command line tool. This allows scalability, and possibly continuos integration in a future server-type project.
+The idea is to integrate as many earthquakes as possible since a more robust data grid is constructed leading to a more precise results. For this process, a software is carried out using a C++, implemented as a CMD application. This is an asistant that analyze data files, collecting information and building a database with SQLite. This allows scalability and the possibility of implemeting continuos integration if a future server-type project is consider.
 
 From each time-series (UD at first) we can get:
-* Mean and peak values
-* Some type of pattern durgin the shaking like, decaing, attenuance, code, aparent velocity (Cx) role, surface waves presence
+* Mean and peak values.
+* Patterns in attenuance, deacying, aparent velocity, surface waves, etc that are not that evident during the shaking.
 
-Other table to include is the prefecture/subprefecture-site name. Each site (or station) has an specific code-name. Then it will be created a table containing those data for an easier querying cycle.
+In addition to the database, a table to include is the prefecture/subprefecture-site name as a reference. Each site (or station) has an specific code-name.
 
 |  prefecture  |  prefecture-code  |  siten  | 
 |  ----  |  ----  |----  
