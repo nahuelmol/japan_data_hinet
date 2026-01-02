@@ -19,7 +19,7 @@ void connect(std::string sql, int (*callback)(void*, int, char**, char**)) {
         std::cerr << "DB CONNECTION ERR: " << sqlite3_errmsg(db) << std::endl;
     }
 
-    rc = sqlite3_exec(db, sql.c_str(), callback, nullptr, &errMsg);
+    rc = sqlite3_exec(db, sql.c_str(), call, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
         std::cerr << "SENTENCE ERR: " << errMsg << std::endl;
         sqlite3_free(errMsg);

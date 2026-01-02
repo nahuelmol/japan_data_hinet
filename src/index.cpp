@@ -26,6 +26,9 @@ void switcher(Command* cmd) {
         if(cmd->target == "eq"){
             std::string query = allTable("earthquakes");
             connect(query, allTableCall);
+        } else if(cmd->target == "st") {
+            std::string query = allTable("stations");
+            connect(query, allTableCall);
         } else {
             std::cout << "not recognized target" << std::endl;
         }

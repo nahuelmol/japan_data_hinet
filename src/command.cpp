@@ -29,11 +29,36 @@ Command::Command(int argc, char* argv[]) {
             }
         }
     } else if (this->root == "ask"){
-        std::cout << "ask" << std::endl;
+        if(argc > 1){
+            if(argc > 2) {
+                this->target = this->args[2];
+                if (argc > 3) {
+                    this->options = argv + 4;
+                    this->set_options();
+                }
+            }
+        }
     } else if (this->root == "ch"){
-        std::cout << "check" << std::endl;
+        if(argc > 1){
+            if(argc > 2) {
+                this->target = this->args[2];
+                if (argc > 3) {
+                    this->filename = this->args[3];
+                    this->options = argv + 4;
+                    this->set_options();
+                }
+            }
+        }
     } else if (this->root == "del"){
-        std::cout << "del" << std::endl;
+        if(argc > 1){
+            if(argc > 2) {
+                this->target = this->args[2];
+                if (argc > 3) {
+                    this->options = argv + 4;
+                    this->set_options();
+                }
+            }
+        }
     } else if (this->root == "migrate"){
         std::cout << "migrating" << std::endl;
     } else if (this->root == "db"){
