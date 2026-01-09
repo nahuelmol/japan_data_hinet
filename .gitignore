@@ -9,3 +9,4 @@ src/output/*.o
 libs
 *.exe
 *.db
+*.png

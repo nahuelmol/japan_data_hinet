@@ -6,7 +6,9 @@
 #include "util.h"
 #include "conn.h"
 #include "ascii.h"
-#include "queries.h"
+#include "query.h"
+#include "command.h"
+#include "calls.h"
 
 void listStations(std::string path, std::string code) {
     const char* final_path = path.c_str();
@@ -114,6 +116,11 @@ void addStation(){
     //std::vector<std::string> data = takeStationData(codename);
     //query = insert_station(data);
     //connect(query, NULL);
+}
+
+void askStation(Command* cmd) {
+    std::string query = all_table("stations");
+    connect(query, allTableCall);
 }
 
 //SEEDING

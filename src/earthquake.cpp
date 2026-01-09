@@ -3,9 +3,10 @@
 
 #include "ascii.h"
 #include "conn.h"
-#include "queries.h"
+#include "query.h"
 #include "util.h"
 #include "command.h"
+#include "calls.h"
 
 std::string takeFirstStation(std::string epath) {
     const char* final_path = epath.c_str();
@@ -49,4 +50,9 @@ void addEarthquake(Command* cmd) {
     } else {
         std::cout << "ERR" << std::endl;
     };
+}
+
+void askEarthquake(Command* cmd) {
+    std::string query = all_table("earthquakes");
+    connect(query, allTableCall);
 }

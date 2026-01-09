@@ -5,9 +5,8 @@
 #include "command.h"
 #include "earthquake.h"
 #include "station.h"
-#include "checker.h"
+#include "query.h"
 #include "builder.h"
-#include "asks.h"
 #include "map.h"
 #include "export.h"
 #include "util.h"
@@ -24,11 +23,9 @@ void switcher(Command* cmd) {
         }
     } else if (cmd->root == "ask") {
         if(cmd->target == "eq"){
-            std::string query = allTable("earthquakes");
-            connect(query, allTableCall);
+            askEarthquake(cmd);
         } else if(cmd->target == "st") {
-            std::string query = allTable("stations");
-            connect(query, allTableCall);
+            askStation(cmd);
         } else {
             std::cout << "not recognized target" << std::endl;
         }
