@@ -18,6 +18,8 @@ void switcher(Command* cmd) {
             addEarthquake(cmd);
         } else if(cmd->target == "st") {
             addStation();
+        } else if(cmd->target == "rd") {
+            addRecord();
         } else {
             std::cout << "not recognized target" << std::endl;
         }
@@ -26,6 +28,8 @@ void switcher(Command* cmd) {
             askEarthquake(cmd);
         } else if(cmd->target == "st") {
             askStation(cmd);
+        } else if(cmd->target == "rd") {
+            askRecord(cmd);
         } else {
             std::cout << "not recognized target" << std::endl;
         }

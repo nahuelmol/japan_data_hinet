@@ -7,7 +7,7 @@ struct RGB {
 };
 
 void save_bitmap(const char* name, int width, int height, std::vector<RGB> pixels) {
-    int padding = (4 - (width * 3) % 4) % 4;
+    int padding  = (4 - (width * 3) % 4) % 4;
     int sizeData = (3 * width + padding) * height;
     int sizeFile = 54 + sizeData;
 
@@ -66,7 +66,6 @@ RGB color_maker(float val) {
 
 
 void makeMap() {
-
     int ancho = 256;
     int alto = 256;
     std::vector<RGB> pixels(ancho * alto);
