@@ -112,23 +112,24 @@ The commands listed here are just previsualizations, they are not built yet. The
 ASK command will give us data about an specific area/zone being a prefecture, subprefecture, etc. 
 
 The following command will show us the number of sites within an specific prefecture.
+
 ```
-SS ask -p Miyagi sitesn
+ss ask -p Miyagi sitesn
 ```
 
 This one, returns data about an specific site if exists or ERR if not.
 ```
-SS ask -st MYG002
+ss ask -st MYG002
 ```
 
 This print out all earthquakes registered in the database
 ```
-SS ask eqs
+ss ask eqs
 ```
 
 This add a new earthquake. The format is year-month-day-hour-minutes-seconds without dash.
 ```
-SS add 20110311144600
+ss add 20110311144600
 ```
 For this is neccesary to have the .knt folder already unzipped in the "data" directory.
 
@@ -137,7 +138,7 @@ For this is neccesary to have the .knt folder already unzipped in the "data" dir
 CHK command works like ASK, it returns data focused on a site. The following gives us which earthquakes were registered by MYG002 as a list ordered by their years. Each earthquake has a unique name, being the complete origin time (from year to second).
 
 ```
-SS check MYG002 -years
+ss check MYG002 -years
 ```
 This shows a table of two columns, the earthquake name in the first and the requested property on second column. If there's not a property specified then it just returns names. Besides years, can be specified:
 
@@ -158,31 +159,30 @@ The idea is to replicate what the NIED sied does.
 Values used for the mentioned map are scalars extracted from the header of the site ASCII file. However, what matters is getting new values from the wave. Then is needed to add that functionality.
 
 ### Waves
+
 It is just a wave plotter. A station and a particular earthquake should be specified. The following command uses the March 11 earthquake wave recorded by MYG002 is used.
 
 ```
-SS print MYG002 M11-2011
+ss print MYG002 M11-2011
 ```
 
 GNUplot may possibly be used to generate the time series plots. It is a command line base tool that takes pre shaped data as an input and produces a plot.
 
-### Building
+### Building intrastructure
 
-Before the data analysis project begins, structure must be ready. This means, tables should exists previous to its usage. On tables.cpp are specified global tables like earthquakes and stations, and their fields can be modified there. Once they're ready, the following command starts the building process on database. 
+Before the data analysis project begins, the structure should be completed including tables ready for their usage. On tables.cpp are specified global tables like earthquakes, stations and records, and their fields can be modified there. Once they're ready, the following command starts the building process on database. 
 
 ```
-SS db:build
+ss db:build
 ```
 
 In the same script, any other table considered global can be included.
 
-The mentioned global earthquake table could be used to build stations tables for each earthquake. Then, it's mandatory to have earthquakes table built and seeded. Being those requirements satisfied, type the following command:
+The following command builds specific tables like earthquakes:
 
 ```
-SS db:build:eqs
+ss db:build:eqs
 ```
-
-Each table produced by this command contains information about an specific earthquake, and its effect on each station. From this, it is easier to build Japan's max acceleration distribution map for each events.
 
 ### Seeding
 
@@ -192,7 +192,7 @@ All data living in our data directory can be saved into the database. It is impo
 
 The command for this process is:
 ```
-SS db:seed
+ss db:seed
 ```
 
 ### Db:tasks
@@ -200,7 +200,7 @@ SS db:seed
 Tasks are basic directives that gives specific information about the database. The following displays all earthquakes related to a specific station.
 
 ```
-SS db:stats -story <statname>
+ss db:stats -story <statname>
 ```
 
 
