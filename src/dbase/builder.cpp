@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "tables.h"
-#include "queries.h"
+#include "query.h"
 #include "conn.h"
 
 int callback (void* NotUsed, int argc, char** argv, char** colname) {
@@ -55,4 +55,5 @@ void buildTables() {
     
     Earthquakes.create();
     Stations.create();
+    Records.create();
 }

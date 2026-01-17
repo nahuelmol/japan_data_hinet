@@ -5,6 +5,7 @@
 #include "command.h"
 #include "earthquake.h"
 #include "station.h"
+#include "record.h"
 #include "query.h"
 #include "builder.h"
 #include "map.h"
@@ -19,7 +20,7 @@ void switcher(Command* cmd) {
         } else if(cmd->target == "st") {
             addStation();
         } else if(cmd->target == "rd") {
-            addRecord();
+            addRecords(cmd);
         } else {
             std::cout << "not recognized target" << std::endl;
         }
@@ -29,7 +30,7 @@ void switcher(Command* cmd) {
         } else if(cmd->target == "st") {
             askStation(cmd);
         } else if(cmd->target == "rd") {
-            askRecord(cmd);
+            askRecords(cmd);
         } else {
             std::cout << "not recognized target" << std::endl;
         }

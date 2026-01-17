@@ -25,12 +25,6 @@ std::string takeFirstStation(std::string epath) {
     return firstStation;
 }
 
-int addCall(void* NotUsed, int argc, char** argv, char** colname) {
-    for(int i = 0; i < argc; i++){
-        std::cout << (argv[i] ? argv[i] : "NULL") << " | ";
-    }
-    std::cout << std::endl;
-}
 
 void addEarthquake(Command* cmd) {
     std::string eq = cmd->filename;
