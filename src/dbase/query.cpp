@@ -26,15 +26,15 @@ std::string insert_earthquake(std::vector<std::string> data) {
 std::string insert_record(std::vector<std::string> data) {
     std::string query = std::string("INSERT INTO RECORDS VALUES (") +
         "'" + data[0] + "', " +
-        data[1] + ", " +
-        data[2] + ", " +
-        data[3] + ", " +
-        data[4] + ", " +
-        data[5] + ", " +
-        data[6] + ", " +
-        data[7] + ", " +
-        data[8] + ", " +
-        data[9] + 
+        "'" + data[1] + "', " +
+        "'" + data[2] + "', " +
+        "'" + data[3] + "', " +
+        "'" + data[4] + "', " +
+        "'" + data[5] + "', " +
+        "'" + data[6] + "', " +
+        "'" + data[7] + "', " +
+        "'" + data[8] + "', " +
+        "'" + data[9] + "'" +
         ");";
     return query;
 }

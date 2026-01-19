@@ -22,8 +22,9 @@ std::string takeRecord(std::string epath) {
             std::cout << "record:" << recordpath << std::endl;
             auto result = wave_header_reader(recordpath);
             if(result.first){
-                std::vector<std::string> data(result.second.begin(), result.second.begin() + 5);
+                std::vector<std::string> data(result.second.begin(), result.second.end());
                 std::string query = insert_record(data);
+                std::cout << "query: " << query << std::endl;
                 connect(query, addCall);
             } else {
                 std::cout << "ERR" << std::endl;

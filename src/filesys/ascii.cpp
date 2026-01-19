@@ -12,7 +12,7 @@ std::pair<bool, std::vector<std::string>> wave_header_reader(std::string path) {
     std::vector<std::string> values;
     std::ifstream file(path);
     if(!file.is_open()){
-        std::cerr << "this file cannot be opened" << std::endl;
+        std::cerr << "cannot open file" << std::endl;
         return {false, {}};
     }
     std::string line;
@@ -50,6 +50,9 @@ std::pair<bool, std::vector<std::string>> wave_header_reader(std::string path) {
             }
         } 
         fields.push_back(field);
+        if (value.length() == 0) {
+            value = "None";
+        }
         values.push_back(value);
         linecounter += 1;
         if(linecounter == 17){
@@ -67,6 +70,6 @@ std::pair<bool, std::vector<std::string>> wave_header_reader(std::string path) {
         linecounter++;
     }
     file.close();
-    std::vector <std::string> data;
-    return {true, values};
+    std::vector<std::string> data;
+    return { true, values };
 }
