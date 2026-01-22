@@ -50,6 +50,12 @@ std::pair<bool, std::vector<std::string>> wave_header_reader(std::string path) {
             }
         } 
         fields.push_back(field);
+        if (field == "RecordTime") {
+            std::string hour = value.substr(value.size() - 8);
+            std::cout << "hour:" << hour << std::endl;
+            fields.push_back("ArrivalHour");
+            values.push_back(hour);
+        }
         if (value.length() == 0) {
             value = "None";
         }

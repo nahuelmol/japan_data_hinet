@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "command.h"
 
 std::string insert_station(std::vector<std::string> data) {
     std::string query = std::string("INSERT INTO STATIONS VALUES (") +
@@ -34,7 +35,10 @@ std::string insert_record(std::vector<std::string> data) {
         "'" + data[6] + "', " +
         "'" + data[7] + "', " +
         "'" + data[8] + "', " +
-        "'" + data[9] + "'" +
+        "'" + data[9] + "', " +
+        "'" + data[10] + "', " +
+        "'" + data[12] + "', " +
+        "'" + data[15] + "'" +
         ");";
     return query;
 }
@@ -50,10 +54,24 @@ std::string select_earthquake(std::string earthquakename){
     return query;
 }
 
-std::string select_station(std::string statname){
-    std::string query = "SELECT * FROM stations WHERE name=" + statname + ";";
+std::string select_station(Command* cmd){
+    std::string add;
+    if((cmd->kv_flags).count("n")){
+        add = add + " WHERE Code='" + (cmd->kv_flags["n"])+ "'";
+    }
+    std::string query = "SELECT * FROM stations"+add+";";
     return query;
 }
+
+std::string select_record(Command* cmd){
+    std::string add;
+    if((cmd->kv_flags).count("n")){
+        add = add + " WHERE Cde_St='" + (cmd->kv_flags["n"])+"'";
+    }
+    std::string query = "SELECT * FROM records"+add+";";
+    return query;
+}
+
 
 std::string delete_record(std::string tablename, int id){
     std::string query = "DELETE * FROM " + tablename + "WHERE id=" + std::to_string(id) + ");";

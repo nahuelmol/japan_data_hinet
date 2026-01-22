@@ -12,6 +12,7 @@
 #include "export.h"
 #include "util.h"
 #include "conn.h"
+#include "calls.h"
 
 void switcher(Command* cmd) {
     if (cmd->root == "add") {
@@ -28,17 +29,23 @@ void switcher(Command* cmd) {
         if(cmd->target == "eq"){
             askEarthquake(cmd);
         } else if(cmd->target == "st") {
-            askStation(cmd);
+            std::string query = select_station(cmd);
+            connect(query, addCall);
         } else if(cmd->target == "rd") {
-            askRecords(cmd);
+            std::string query = select_record(cmd);
+            connect(query, addCall);
         } else {
             std::cout << "not recognized target" << std::endl;
         }
     } else if (cmd->root == "ch") {
         if (cmd->target == "eq") {
             std::cout << "check eq" << std::endl;
-        } else if (cmd->target == "stat") {
-            std::cout << "check stat" << std::endl;
+        } else if (cmd->target == "st") {
+            std::cout << "checking every stations" << std::endl;
+            askStation(cmd);
+        } else if (cmd->target == "rd") {
+            std::cout << "checking every records" << std::endl;
+            askRecords(cmd);
         } else {
             std::cout << "unrecognized target" << std::endl;
         }

@@ -15,6 +15,7 @@ Command::Command(int argc, char* argv[]) {
         return;
     } else {
         this->available = true;
+        std::cout << "working..." << std::endl;
     }
     this->root = argv[1];
     if(this->root == "add"){
@@ -33,7 +34,7 @@ Command::Command(int argc, char* argv[]) {
             if(argc > 2) {
                 this->target = this->args[2];
                 if (argc > 3) {
-                    this->options = argv + 4;
+                    this->options = argv + 3;
                     this->set_options();
                 }
             }
@@ -80,8 +81,8 @@ Command::Command(int argc, char* argv[]) {
 
 void Command::set_options() {
     for(char** p = this->options; *p != nullptr; ++p) {
-        auto it = std::find(this->ava_k_n_v.begin(), this->ava_k_n_v.end(), *p);
-        if(it != this->ava_k_n_v.end()) {
+        auto it = std::find(this->ava_knv.begin(), this->ava_knv.end(), *p);
+        if(it != this->ava_knv.end()) {
             std::cout << *(p+1) << std::endl;
             this->kv_flags[*p] = *(p+1);
         } 

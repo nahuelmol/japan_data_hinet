@@ -51,7 +51,10 @@ void buildTables() {
     Records.add("Lat_St", "TEXT");
     Records.add("Lon_St", "TEXT");
     Records.add("Hei_St", "TEXT");
+    Records.add("Arrival_St",   "TEXT");
     Records.add("Rdt_St", "TEXT");
+    Records.add("Dur_St", "TEXT");
+    Records.add("Max_Acc",    "TEXT");
     
     Earthquakes.create();
     Stations.create();
