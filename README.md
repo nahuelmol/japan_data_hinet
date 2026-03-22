@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/github/languages/count/nahuelmol/japan_data_hinet"/>
 </div>
 
-Content: most of the documentation is tentative. It's not built yet but it will be soon.
+Content: most of the documentation is tentative. It's not built yet but it will.
 I should mention that data source is K-NET (Kyoshin Network) in specific.
 
 ## Index
@@ -60,13 +60,14 @@ First, we select an earthquake. In our case, the well known March-11-2011 Tohoku
 
 ![March-11](capture1.png)
 
-The browser will download a tar file which contains our data. The following is just decomprise it.
-NIED gives us, a bunch of data, placed in different files. Per station there will a file for each components; UD (up-down), the NS(north-south) and EW(east-west). It's possible to identify what we have by the name of the file.(capture2.png)
+The browser will download a tar file that contains seismic data. The following is just to decomprise it.
+NIED gives us, a bunch of data, placed in different files. Per station there will a file for each directional component; UD (up-down), the NS(north-south) and EW(east-west). It's possible to identify what data is contained by looking at the name of the file.(capture2.png)
 
 ![March-11](capture2.png)
 
 In our example, you can see (capture1.png) that there are 1.227 sites, 1.227 stations and each one contains UD, NS and EW wave components as time series, along with other information.
-Using an .UD file, we can see (capture3.png) how the ASCII file looks like, the called K-NET ASCII file. It starts with 17 lines of metadata and from the 18 line a time-series begins which represents the wave in its UD component.
+
+Using an .UD file, (since we poit at vertical motion) we can see (capture3.png) how the ASCII file looks like, the called K-NET ASCII file. It starts with 17 lines of metadata and from the 18th line, a time-series begins representing the wave in its UD component.
 
 ![March-11](capture3.png)
 
@@ -87,7 +88,7 @@ There will be a table that contains the studied earthquakes and its most importa
 
 Initially depth, magnitude, main prefecture, year, among other event's properties are taken into account.
 
-The idea is to integrate as many earthquakes as possible since a more robust data grid is constructed leading to a more precise results. For this process, a software is carried out using a C++, implemented as a CMD application. This is an asistant that analyze data files, collecting information and building a database with SQLite. This allows scalability and the possibility of implemeting continuos integration if a future server-type project is consider.
+The idea is to integrate as many earthquakes as possible since a more robust data grid is constructed leading to a more precise results. For this process, a software is developed using C++, implemented as a CMD application. This is an asistant that analyzes data files, collecting information and also building a database with SQLite.
 
 From each time-series (UD at first) we can get:
 * Mean and peak values.
@@ -105,7 +106,7 @@ The number of sites will inscrease as long as a site is added.
 ## CMD tool
 The main goal is the building of a good CMD tool for managing the constant flow to our database, modifying tables, columns and records. 
 
-The commands listed here are just previsualizations, they are not built yet. The name of the tool is SS.
+The commands listed here are just previsualizations, they are not built yet. The name of the tool is ss.
 
 ### Asking
 
