@@ -60,7 +60,7 @@ Command::Command(int argc, char* argv[]) {
                 }
             }
         }
-    } else if (this->root == "migrate"){
+    } else if (this->root == "mig"){
         std::cout << "migrating" << std::endl;
     } else if (this->root == "db"){
         std::cout << "dbiding" << std::endl;

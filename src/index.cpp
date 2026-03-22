@@ -39,19 +39,21 @@ void switcher(Command* cmd) {
         }
     } else if (cmd->root == "ch") {
         if (cmd->target == "eq") {
-            std::cout << "check eq" << std::endl;
+            std::cout << "checking earthquake..." << std::endl;
+            //eq_checker();
         } else if (cmd->target == "st") {
-            std::cout << "checking every stations" << std::endl;
+            std::cout << "checking every station" << std::endl;
             askStation(cmd);
         } else if (cmd->target == "rd") {
-            std::cout << "checking every records" << std::endl;
+            std::cout << "checking every record" << std::endl;
             askRecords(cmd);
         } else {
             std::cout << "unrecognized target" << std::endl;
         }
     } else if (cmd->root == "del") {
         if (cmd->target == "eq") {
-            std::cout << "del eq" << std::endl;
+            std::cout << "del earthquake" << cmd << std::endl;
+            delEarthquake();
         } else if (cmd->target == "stat") {
             std::cout << "del stat" << std::endl;
         } else {

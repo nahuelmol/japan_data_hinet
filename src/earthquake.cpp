@@ -25,7 +25,6 @@ std::string takeFirstStation(std::string epath) {
     return firstStation;
 }
 
-
 void addEarthquake(Command* cmd) {
     std::string eq = cmd->filename;
     std::string eq_name = eq + ".knt";
@@ -38,12 +37,16 @@ void addEarthquake(Command* cmd) {
     auto result = wave_header_reader(filepath);
     if(result.first){
         std::vector<std::string> data(result.second.begin(), result.second.begin() + 5);
-        //enter to the database
         std::string query = insert_earthquake(data);
         connect(query, addCall);
     } else {
         std::cout << "ERR" << std::endl;
     };
+}
+
+void delEarthquake(Command* cmd) {
+    std::string query = delete_earthquake();
+    connect(query, allTableCall);
 }
 
 void askEarthquake(Command* cmd) {

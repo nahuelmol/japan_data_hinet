@@ -25,14 +25,8 @@ std::string insert_earthquake(std::vector<std::string> data) {
 }
 
 std::string delete_earthquake() {
-    std::string key;
-    std::string val;
-
-    std::cout << "Please state a condition\nFirst the column: " << std::endl;
-    std::cin >> key;
-    std::cout << "Now, the value: " << std::endl;
-    std::cin >> val;
-    std::string query = std::string("DELETE FROM EARTHQUAKES WHERE ") + key + "=" + val + ";";
+    std::cout << "please state a condiction" << std::endl;
+    std::string query = std::string("DELETE FROM EARTHQUAKES WHERE ");
     return query;
 }
 
