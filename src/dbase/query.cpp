@@ -36,6 +36,18 @@ std::string delete_earthquake() {
     return query;
 }
 
+std::string delete_station() {
+    std::string key;
+    std::string val;
+
+    std::cout << "Please state a condition\nFirst the column: " << std::endl;
+    std::cin >> key;
+    std::cout << "Now, the value: " << std::endl;
+    std::cin >> val;
+    std::string query = std::string("DELETE FROM STATION WHERE ") + key + "=" + val + ";";
+    return query;
+}
+
 std::string insert_record(std::vector<std::string> data) {
     std::string query = std::string("INSERT INTO RECORDS VALUES (") +
         "'" + data[0] + "', " +

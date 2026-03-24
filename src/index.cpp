@@ -42,22 +42,19 @@ void switcher(Command* cmd) {
             std::cout << "checking earthquake..." << std::endl;
             //eq_checker();
         } else if (cmd->target == "st") {
-            std::cout << "checking every station" << std::endl;
             askStation(cmd);
         } else if (cmd->target == "rd") {
-            std::cout << "checking every record" << std::endl;
             askRecords(cmd);
         } else {
-            std::cout << "unrecognized target" << std::endl;
+            std::cout << "checking: unrecognized target" << std::endl;
         }
     } else if (cmd->root == "del") {
         if (cmd->target == "eq") {
-            std::cout << "del earthquake" << cmd << std::endl;
             delEarthquake();
         } else if (cmd->target == "stat") {
-            std::cout << "del stat" << std::endl;
+            delStation();
         } else {
-            std::cout << "unrecognized target" << std::endl;
+            std::cout << "delete: unrecognized target" << std::endl;
         }
     } else if (cmd->root == "db") {
         if(cmd->target == "build"){

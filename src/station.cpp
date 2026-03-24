@@ -123,6 +123,11 @@ void askStation(Command* cmd) {
     connect(query, allTableCall);
 }
 
+void delStation() {
+    std::string query = delete_station("stations");
+    connect(query, allTableCall);
+}
+
 //SEEDING
 std::vector<std::string> filter(std::vector<std::string> rawdata, std::string targetable) {
     int i = 0;
