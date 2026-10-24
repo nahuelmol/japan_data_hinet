@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <tuple>
 
 #include "util.h"
 #include "conn.h"
@@ -96,22 +97,25 @@ void addby_code(std::string eq, std::string codename) {
     }
 }
 
-void addStation(){
+void addStation(Command* cmd){
     std::cout << "Tell me the earthquake" << std::endl;
     std::string earthQuake;
     std::cin >> earthQuake;
     lookForStations(earthQuake); //this will show stations in filesystem
-    std::cout << "Which station do you want to add, tell me the station code: " << std::endl;
+    std::cout << "Tell me the station code: " << std::endl;
     std::string codename;
     std::cin >> codename;
     //the following checks if station already exists in database
-    std::string query = select(codename, "stations");
-    connect(query, NULL);
+    std::tuple res = select("stations", cmd->kv_flags);
+    if(std::get<1>(res) == true){
+        connect(std::get<0>(res), NULL);
+    } else {
+        std::cout << "not exists, adding" << std::endl;
+        addby_code(earthQuake, codename);
+    }
     //if not
     //read file and extract data
 
-    std::cout << "not exists, adding" << std::endl;
-    addby_code(earthQuake, codename);
 
     //std::vector<std::string> data = takeStationData(codename);
     //query = insert_station(data);
@@ -119,18 +123,19 @@ void addStation(){
 }
 
 void askStation(Command* cmd) {
-    std::string query = all_table("stations");
-    connect(query, allTableCall);
+    std::tuple res = select("stations", cmd->kv_flags);
+    if (std::get<1>(res) == true) {
+        connect(std::get<0>(res), allTableCall);
+    }
 }
 
 void delStation() {
-    std::string query = delete_station("stations");
+    std::string query = delete_station();
     connect(query, allTableCall);
 }
 
 //SEEDING
 std::vector<std::string> filter(std::vector<std::string> rawdata, std::string targetable) {
-    int i = 0;
     std::vector<std::string> newdata;
     if(targetable == "station") {
         int places[] = {5,6,7,8,13};

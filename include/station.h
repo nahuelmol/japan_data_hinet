@@ -4,10 +4,11 @@
 void listStations(std::string path, std::string code);
 void lookForStations(std::string earthQuake);
 std::vector<std::string> takeStationData(std::string code);
-void addStation();
+void addStation(Command* cmd);
 void askStation(Command* cmd);
 std::vector<std::string> filter(std::vector<std::string> rawdata, std::string targetable);
 void enterDir(std::vector<std::string> earthquakes);
 void seedStations();
+void delStation();
 
 #endif

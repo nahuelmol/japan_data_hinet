@@ -8,9 +8,9 @@ class Command {
 public:
     std::string root;
     std::string target;
-    std::vector<std::string> availableRoots = {"add", "ask", "ch", "print", "decom" , "del", "help", "?"};
-    std::vector<std::string> ava_knv    = {"-ts", "n"};
-    std::vector<std::string> ava_keys   = {"-f"};
+    std::vector<std::string> availableRoots = {"add", "ask", "print", "decom" , "del", "help", "?"};
+    std::vector<std::string> ava_knv    = {"-ts", "n", "c", "cn"}; //cn stands for codename
+    std::vector<std::string> ava_keys   = {"-f", "all"};
     
     char** options = {};
     char** args;
@@ -21,6 +21,7 @@ public:
 
     bool forced = false;
     bool available = false;
+    bool all = false;
 
     Command(int argc, char* argv[]);
     void set_options();

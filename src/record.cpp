@@ -50,7 +50,11 @@ void addRecords(Command* cmd) {
 }
 
 void askRecords(Command* cmd) {
-    std::string query = all_table("records");
-    connect(query, allTableCall);
+    std::tuple res = select("records", cmd->kv_flags);
+    if(std::get<1>(res) == true) {
+        connect(std::get<0>(res), allTableCall);
+    } else {
+        return;
+    }
 }
 

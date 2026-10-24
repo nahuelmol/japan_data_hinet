@@ -19,39 +19,30 @@ void switcher(Command* cmd) {
         if (cmd->target == "eq") {
             addEarthquake(cmd);
         } else if(cmd->target == "st") {
-            addStation();
+            addStation(cmd);
         } else if(cmd->target == "rd") {
             addRecords(cmd);
         } else {
             std::cout << "not recognized target" << std::endl;
         }
     } else if (cmd->root == "ask") {
+        std::tuple <std::string, bool> response;
         if(cmd->target == "eq"){
             askEarthquake(cmd);
         } else if(cmd->target == "st") {
-            std::string query = select_station(cmd);
-            connect(query, addCall);
+            response = select("stations", cmd->kv_flags);
         } else if(cmd->target == "rd") {
-            std::string query = select_record(cmd);
-            connect(query, addCall);
+            response = select("records", cmd->kv_flags);
         } else {
             std::cout << "not recognized target" << std::endl;
         }
-    } else if (cmd->root == "ch") {
-        if (cmd->target == "eq") {
-            std::cout << "checking earthquake..." << std::endl;
-            //eq_checker();
-        } else if (cmd->target == "st") {
-            askStation(cmd);
-        } else if (cmd->target == "rd") {
-            askRecords(cmd);
-        } else {
-            std::cout << "checking: unrecognized target" << std::endl;
+        if (std::get<1>(response) == true) {
+            connect(std::get<0>(response), addCall);
         }
     } else if (cmd->root == "del") {
         if (cmd->target == "eq") {
-            delEarthquake();
-        } else if (cmd->target == "stat") {
+            delEarthquake(cmd);
+        } else if (cmd->target == "st") {
             delStation();
         } else {
             std::cout << "delete: unrecognized target" << std::endl;
@@ -86,7 +77,7 @@ int main(int argc, char* argv[]) {
     if(cmd->available) {
         switcher(cmd);
     } else {
-        std::cout << "aborting execution" << std::endl;
+        std::cout << "----getting out" << std::endl;
     }
     return 0;
 }

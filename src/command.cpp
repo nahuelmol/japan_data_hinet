@@ -39,17 +39,6 @@ Command::Command(int argc, char* argv[]) {
                 }
             }
         }
-    } else if (this->root == "ch"){
-        if(argc > 1){
-            if(argc > 2) {
-                this->target = this->args[2];
-                if (argc > 3) {
-                    this->filename = this->args[3];
-                    this->options = argv + 4;
-                    this->set_options();
-                }
-            }
-        }
     } else if (this->root == "del"){
         if(argc > 1){
             if(argc > 2) {
@@ -90,6 +79,9 @@ void Command::set_options() {
         if(in != this->ava_keys.end()) {
             if(*in == "-f"){
                 this->forced = true;
+            }
+            if(*in == "all"){
+                this->all;
             }
         }
     }

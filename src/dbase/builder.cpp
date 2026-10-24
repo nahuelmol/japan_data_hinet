@@ -20,10 +20,13 @@ int callback (void* NotUsed, int argc, char** argv, char** colname) {
     return 0;
 }
 
-void buildEqsTables() {
-    std::string query = select_all("earthquakes");
-    connect(query, callback); //connects
-}
+//void buildEqsTables(cmd) {
+//    std::tuple response = select("earthquakes", cmd->kv_flags);
+//    if (std::get<1>(response) == true) {
+//        connect(std::get<0>(response), callback);
+//    }
+//    return;
+//}
 
 void buildTables() {
     Table Earthquakes("Earthquakes");

@@ -6,10 +6,9 @@ SRC = $(shell find src -name "*.cpp")
 OBJ = $(SRC:.cpp=.o)
 TARGET = ss
 all = $(TARGET)
-SQLITE_OBJ = libs\sqlite3.o
 
 $(TARGET): $(OBJ) $(SQLITE_OBJ)
-	$(CXX) $(OBJ) $(SQLITE_OBJ) -o $@
+	$(CXX) $(OBJ) $(SQLITE_OBJ) -o $@ -lsqlite3
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@

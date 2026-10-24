@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include "command.h"
+#include <tuple>
+#include <sstream>
 
 std::string insert_station(std::vector<std::string> data) {
     std::string query = std::string("INSERT INTO STATIONS VALUES (") +
@@ -67,45 +69,36 @@ std::string insert_record(std::vector<std::string> data) {
     return query;
 }
 
+std::tuple<std::string, bool> select(std::string table, std::unordered_map<std::string, std::string> kv_flags){
 
-std::string select_all(std::string tablename){
-    std::string query = "SELECT * FROM " + tablename + ";";
-    return query;
-}
+    std::string cond = kv_flags["c"];
+    if (cond == "all") {
+        std::string query = "SELECT * FROM " +table+ ";";
+        return {query, true};
+    } else if (cond.find(':') != std::string::npos){
+        std::stringstream ss(cond);
+        std::string field;
+        std::string confi;
+        std::string e;
+        int i = 1;
 
-std::string select_earthquake(std::string earthquakename){
-    std::string query = "SELECT * FROM earthquakes WHERE earthquakename="+ earthquakename + ";";
-    return query;
-}
-
-std::string select_station(Command* cmd){
-    std::string add;
-    if((cmd->kv_flags).count("n")){
-        add = add + " WHERE Code='" + (cmd->kv_flags["n"])+ "'";
+        while (std::getline(ss, e, ':')) {
+            if (i == 1) {
+                field = e;
+            } else if (i == 2) {
+                confi = e;
+            }
+            i++;
+        }
+        std::string query = "SELECT * FROM " +table+ " WHERE " +field+ "=" +confi+ ";";
+        return {query, true};
+    } else {
+        return {"not query available", false};
     }
-    std::string query = "SELECT * FROM stations"+add+";";
-    return query;
 }
-
-std::string select_record(Command* cmd){
-    std::string add;
-    if((cmd->kv_flags).count("n")){
-        add = add + " WHERE Cde_St='" + (cmd->kv_flags["n"])+"'";
-    }
-    std::string query = "SELECT * FROM records"+add+";";
-    return query;
-}
-
 
 std::string delete_record(std::string tablename, int id){
     std::string query = "DELETE * FROM " + tablename + "WHERE id=" + std::to_string(id) + ");";
-    return query;
-}
-
-std::string select(std::string codename, std::string target) {
-    codename = "'" + codename + "'";
-    std::string query = "SELECT * FROM " + target + " WHERE Code=" + codename + ";";
-    std::cout << query << std::endl;
     return query;
 }
 
@@ -119,20 +112,4 @@ std::string drop_idx(std::string idx) {
     return query;
 }
 
-std::string all_table(std::string tablename){
-    std::string ecolumns = "ORIGIN TIME | LAT | LON | DEPTH | MAGNITUDE |";
-    std::string scolumns = "STATIONNAME | LAT | LON | PREFECTURE CODE |";
-    std::string pcolumns = "PREFECTURENAME | PREFECTURE CODE | REGISTERED STATIONS |";
-
-    if(tablename == "earthquakes"){
-        std::cout << ecolumns << std::endl;
-    } else if (tablename == "stations"){
-        std::cout << scolumns << std::endl;
-    } else if (tablename == "prefectures"){
-        std::cout << pcolumns << std::endl;
-    }
-
-    std::string query = "SELECT * FROM " + tablename + ";";
-    return query;
-}
 

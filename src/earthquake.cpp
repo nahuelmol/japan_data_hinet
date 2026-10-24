@@ -50,6 +50,12 @@ void delEarthquake(Command* cmd) {
 }
 
 void askEarthquake(Command* cmd) {
-    std::string query = all_table("earthquakes");
-    connect(query, allTableCall);
+    std::tuple response = select("earthquakes", cmd->kv_flags);
+    if (std::get<1>(response) == true) {
+        connect(std::get<0>(response), allTableCall);
+    } else {
+        std::cout << "----message:" + std::get<0>(response);
+        return;
+    }
 }
+
